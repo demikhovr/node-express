@@ -1,0 +1,10 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">JS Apps</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li {{#if isHome}}class="active"{{/if}}><a href="/">Main</a></li>
+      <li {{#if isApps}}class="active"{{/if}}><a href="/apps">Apps</a></li>
+      <li {{#if isAdd}}class="active"{{/if}}><a href="/add">Add app</a></li>
+    </ul>
+  </div>
+</nav>

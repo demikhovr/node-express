@@ -11,8 +11,21 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
+app.use(express.static('public'));
 
-app.get('/', (req, res) => res.render('index'));
-app.get('/about', (req, res) => res.render('about'));
+app.get('/', (req, res) => res.render('index', {
+  title: 'Main page',
+  isHome: true,
+}));
+
+app.get('/apps', (req, res) => res.render('apps', {
+  title: 'Apps',
+  isApps: true,
+}));
+
+app.get('/add', (req, res) => res.render('add', {
+  title: 'Add app',
+  isAdd: true,
+}));
 
 app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
