@@ -6,4 +6,10 @@ router.get('/', (req, res) => res.render('add', {
   isAdd: true,
 }));
 
+router.post('/', (req, res) => {
+  console.log(req.body);
+
+  res.redirect('/apps');
+});
+
 module.exports = router;
