@@ -25,3 +25,9 @@
   max-width: 600px;
   height: auto;
 }
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
