@@ -12,4 +12,13 @@ router.get('/', async (req, res) => {
   });
 });
 
+router.get('/:id', async (req, res) => {
+  const app = await App.getById(req.params.id);
+  res.render('app', {
+    layout: 'empty',
+    title: `App ${app.title}`,
+    app,
+  });
+});
+
 module.exports = router;

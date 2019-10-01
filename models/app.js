@@ -54,6 +54,11 @@ class App {
       );
     });
   }
+
+  static async getById(id) {
+    const apps = await App.getAll();
+    return apps.find(it => it.id === id);
+  }
 }
 
 module.exports = App;
