@@ -38,6 +38,26 @@ class App {
     });
   }
 
+  static async update(app) {
+    const apps = await App.getAll();
+    const index = apps.findIndex(it => it.id === app.id);
+    apps[index] = app;
+
+    return new Promise((resolve, reject) => {
+      fs.writeFile(
+        path.join(__dirname, '..', 'data', 'apps.json'),
+        JSON.stringify(apps),
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        },
+      );
+    });
+  }
+
   static getAll() {
     return new Promise((resolve, reject) => {
       fs.readFile(

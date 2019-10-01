@@ -1,0 +1,20 @@
+<h1>Edit {{app.title}}</h1>
+<form action="/apps/edit" method="POST">
+  <div class="input-field">
+    <input class="validate" type="text" id="title" name="title" value="{{app.title}}" required>
+    <label for="title">App name</label>
+    <span class="helper-text" data-error="Input name"></span>
+  </div>
+  <div class="input-field">
+    <input class="validate" type="number" id="price" name="price" value="{{app.price}}" required min="1">
+    <label for="price">Price</label>
+    <span class="helper-text" data-error="Input price"></span>
+  </div>
+  <div class="input-field">
+    <input class="validate" type="text" id="img" name="img" value="{{app.img}}" required>
+    <label for="img">image URL</label>
+    <span class="helper-text" data-error="Input image URL"></span>
+  </div>
+  <input type="hidden" name="id" value="{{app.id}}">
+  <button class="btn btn-primary" type="submit">Edit app</button>
+</form>
