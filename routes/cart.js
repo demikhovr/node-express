@@ -14,7 +14,9 @@ router.get('/', async (req, res) => {
   const cart = await Cart.fetch();
   res.render('cart', {
     title: 'Cart',
-    cart,
+    isCart: true,
+    apps: cart.apps,
+    price: cart.price,
   });
 });
 
