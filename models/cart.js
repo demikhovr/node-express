@@ -40,9 +40,9 @@ class Cart {
     const app = cart.apps[index];
 
     if (app.count === 1) {
-      cart.apps.filter(it => it.id !== id);
+      cart.apps = cart.apps.filter(it => it.id !== id);
     } else {
-      cart.apps[index].count -= 1;
+      app.count -= 1;
     }
 
     cart.price -= app.price;
