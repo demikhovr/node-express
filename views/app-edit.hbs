@@ -1,5 +1,5 @@
 <h1>Edit {{app.title}}</h1>
-<form action="/apps/edit" method="POST">
+<form class="app-form" action="/apps/edit" method="POST">
   <div class="input-field">
     <input class="validate" type="text" id="title" name="title" value="{{app.title}}" required>
     <label for="title">App name</label>
@@ -17,4 +17,8 @@
   </div>
   <input type="hidden" name="id" value="{{app.id}}">
   <button class="btn btn-primary" type="submit">Edit app</button>
+</form>
+<form action="/apps/remove" method="POST">
+  <input type="hidden" name="id" value="{{app.id}}">
+  <button class="btn red" type="submit">Delete app</button>
 </form>

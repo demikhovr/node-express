@@ -30,6 +30,15 @@ router.post('/edit', async (req, res) => {
   res.redirect('/apps');
 });
 
+router.post('/remove', async (req, res) => {
+  try {
+    await App.deleteOne({ _id: req.body.id });
+    res.redirect('/apps');
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 router.get('/:id', async (req, res) => {
   const app = await App.findById(req.params.id);
   res.render('app', {
