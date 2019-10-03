@@ -3,7 +3,7 @@ const App = require('../models/app');
 
 const router = Router();
 router.get('/', async (req, res) => {
-  const apps = await App.getAll();
+  const apps = await App.find();
   res.render('apps', {
     title: 'Apps',
     isApps: true,
@@ -16,7 +16,7 @@ router.get('/:id/edit', async (req, res) => {
     return res.redirect('/');
   }
 
-  const app = await App.getById(req.params.id);
+  const app = await App.findById(req.params.id);
   res.render('app-edit', {
     title: `Edit ${app.title}`,
     app,
@@ -24,12 +24,14 @@ router.get('/:id/edit', async (req, res) => {
 });
 
 router.post('/edit', async (req, res) => {
-  await App.update(req.body);
+  const { id } = req.body;
+  delete req.body.id;
+  await App.findByIdAndUpdate(id, req.body);
   res.redirect('/apps');
 });
 
 router.get('/:id', async (req, res) => {
-  const app = await App.getById(req.params.id);
+  const app = await App.findById(req.params.id);
   res.render('app', {
     layout: 'empty',
     title: `App ${app.title}`,
