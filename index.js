@@ -28,7 +28,7 @@ app.use('/cart', cartRoutes);
 
 const start = async () => {
   try {
-    const url = 'mongodb+srv://demikhovr:KV91ugQZ0KRL04y9@cluster0-f7kyf.mongodb.net/test?retryWrites=true&w=majority';
+    const url = 'mongodb+srv://demikhovr:KV91ugQZ0KRL04y9@cluster0-f7kyf.mongodb.net/shop';
     await mongoose.connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

@@ -9,9 +9,18 @@ router.get('/', (req, res) => res.render('add', {
 
 router.post('/', async (req, res) => {
   const { title, price, img } = req.body;
-  const app = new App(title, price, img);
-  await app.save();
-  res.redirect('/apps');
+  const app = new App({
+    title,
+    price,
+    img,
+  });
+
+  try {
+    await app.save();
+    res.redirect('/apps');
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;
