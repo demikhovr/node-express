@@ -1,6 +1,13 @@
 const { Router } = require('express');
 const App = require('../models/app');
 
+const mapCartItems = cart => cart.items.map(it => ({
+  ...it.appId._doc,
+  count: it.count,
+}));
+
+const computePrice = apps => apps.reduce((accum, curr) => curr.price * curr.count + accum, 0);
+
 const router = Router();
 
 router.post('/add', async (req, res) => {
@@ -10,12 +17,18 @@ router.post('/add', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  const cart = await Cart.fetch();
+  const user = await req.user
+    .populate('cart.items.appId')
+    .execPopulate();
+
+  const apps = mapCartItems(user.cart);
+  const price = computePrice(apps);
+
   res.render('cart', {
     title: 'Cart',
     isCart: true,
-    apps: cart.apps,
-    price: cart.price,
+    apps,
+    price,
   });
 });
 
