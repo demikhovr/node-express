@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const app = new Schema({
+const appSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -16,4 +16,13 @@ const app = new Schema({
   },
 });
 
-module.exports = model('App', app);
+appSchema.method('toClient', function () {
+  const app = this.toObject();
+
+  app.id = app._id;
+  delete app._id;
+
+  return app;
+});
+
+module.exports = model('App', appSchema);
