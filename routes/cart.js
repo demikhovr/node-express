@@ -4,8 +4,8 @@ const App = require('../models/app');
 const router = Router();
 
 router.post('/add', async (req, res) => {
-  const app = await App.getById(req.body.id);
-  await Cart.add(app);
+  const app = await App.findById(req.body.id);
+  await req.user.addToCart(app);
   res.redirect('/cart');
 });
 
