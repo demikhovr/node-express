@@ -13,6 +13,7 @@ router.post('/', async (req, res) => {
     title,
     price,
     img,
+    userId: req.user,
   });
 
   try {

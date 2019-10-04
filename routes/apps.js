@@ -3,7 +3,10 @@ const App = require('../models/app');
 
 const router = Router();
 router.get('/', async (req, res) => {
-  const apps = await App.find();
+  const apps = await App.find()
+    .populate('userId', 'email name')
+    .select('price title img');
+
   res.render('apps', {
     title: 'Apps',
     isApps: true,
