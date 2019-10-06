@@ -7,6 +7,7 @@ const homeRoutes = require('./routes/home');
 const appsRoutes = require('./routes/apps');
 const addRoutes = require('./routes/add');
 const cartRoutes = require('./routes/cart');
+const ordersRoutes = require('./routes/orders');
 
 const User = require('./models/user');
 
@@ -37,6 +38,7 @@ app.use('/', homeRoutes);
 app.use('/apps', appsRoutes);
 app.use('/add', addRoutes);
 app.use('/cart', cartRoutes);
+app.use('/orders', ordersRoutes);
 
 const start = async () => {
   try {
