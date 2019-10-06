@@ -3,9 +3,24 @@ const toCurrency = price => new Intl.NumberFormat('ru-RU', {
   style: 'currency',
 }).format(price);
 
-const prices = document.querySelectorAll('.price');
-prices.forEach((node) => {
+const toDate = date => new Intl.DateTimeFormat('ru-RU', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+}).format(new Date(date));
+
+const $prices = document.querySelectorAll('.price');
+const $dates = document.querySelectorAll('.date');
+
+$prices.forEach((node) => {
   node.textContent = toCurrency(node.textContent);
+});
+
+$dates.forEach((node) => {
+  node.textContent = toDate(node.textContent);
 });
 
 const $cart = document.querySelector('.cart');
@@ -33,7 +48,7 @@ if ($cart) {
           } else {
             $cart.innerHTML = '<p>Cart is empty</p>';
           }
-        })
+        });
     }
   });
 }
